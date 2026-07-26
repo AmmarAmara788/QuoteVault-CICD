@@ -1,15 +1,28 @@
-# QuoteVault API — CI/CD Assignment (student)
+# QuoteVault — CI/CD Assignment (student)
 
-A working Flask QuoteVault API (in-memory, no database). Your task: **write the Docker and CI/CD
-files** (they exist but are empty) so it builds, tests, and publishes automatically.
+A small Flask **QuoteVault API** that is already **fully working and Dockerized**. The app, the
+tests and the `Dockerfile` are done.
 
-Start here → **[`ASSIGNMENT.md`](ASSIGNMENT.md)**.
-
+**Your task: write the CI/CD pipeline.** The two workflow files exist but are **empty**:
 ```
-quotevault/    app code (DONE — don't edit)
-tests/        unit + api tests (DONE)
-Dockerfile                  ← YOU write
-docker-compose.yml          ← YOU write
-.github/workflows/ci.yml    ← YOU write
-.github/workflows/cd.yml    ← YOU write
+.github/workflows/ci.yml     ← YOU write (lint → unit → api → docker build + smoke test)
+.github/workflows/cd.yml     ← YOU write (build & push image to GHCR, release on tags)
 ```
+
+Start here → **[`ASSIGNMENT.md`](ASSIGNMENT.md)**
+
+## Check that everything works before you start
+```bash
+pip install -r requirements.txt -r requirements-dev.txt
+pytest -q                      # 10 tests pass
+
+docker compose up --build      # http://localhost:8000
+curl localhost:8000/health     # {"status":"ok"}
+```
+
+## The API
+```
+GET  /health               GET  /api/quotes
+POST /api/quotes           GET  /api/quotes/random
+```
+Quotes are stored in memory — no database needed.
