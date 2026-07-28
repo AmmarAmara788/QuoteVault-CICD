@@ -27,3 +27,13 @@ jobs:
           context: .
           push: true
           tags: ${{ secrets.DOCKER_USERNAME }}/quotevault:latest
+
+  deploy:
+    needs: build-and-push
+    runs-on: self-hosted
+    steps:
+      - name: Deploy Application
+        run: |
+          cd /home/ammaramara/devops_tasks/CICD/quotevault-cicd
+          docker compose pull
+          docker compose up -d

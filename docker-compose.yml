@@ -1,7 +1,8 @@
 # The app runs standalone (in-memory store) — no database needed.
 services:
   api:
-    build: .
+    #build: .
+    image: ammaramara/quotevault:latest
     ports:
       - "8000:8000"
     restart: unless-stopped
