@@ -17,7 +17,7 @@ jobs:
           python-version: "3.10"
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r requirements-dev.txt
       - name: Run Unit Tests
         run: pytest tests/unit/ # نحدد المجلد فقط
 
@@ -32,6 +32,6 @@ jobs:
           python-version: "3.10"
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install -r requirements-dev.txt
       - name: Run API Tests
         run: pytest tests/api/ # نحدد المجلد فقط
